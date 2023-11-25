@@ -1,0 +1,132 @@
+def int_input(question):
+  while True:
+    try:
+        user_input = int(input(question))
+        return user_input  
+    except ValueError:
+        print("Please enter a valid integer.")
+
+#^^^ This function is a more robust integer input
+
+def denary_input():
+  while True:
+    try:
+      user_input = int(input("What is your denary number? Between 0 and 256"))
+      if 0 <= user_input < 256:
+        return user_input
+      else:
+        user_input = "potato"
+        print("number out of range try again")
+    except ValueError:
+      print("Please enter a valid integer.")
+
+#^^^ This function takes a value and makes sure its an integer between 0 and 256 
+
+def binary_input():
+  while True:
+    count = 0
+    user_input = input("What is your 8-bit binary number?").strip()
+    if len(user_input) == 8:
+       for i in user_input:
+         if i == "1" or i == "0":
+           count += 1
+       if count == 8:
+         return user_input
+       else:
+         print("invalid 8 bit binary number")
+
+#^^^ This function takes the binary number as a string and makes sure that it is 8 long and all 1 or 0
+
+def hex_input():
+  while True:
+    count = 0
+    user_input = input("What is your hex number?").upper().strip()
+    if len(user_input) == 2:
+      for i in user_input:
+        try:
+          if 0 <= int(i) < 10:
+            count += 1
+        except ValueError:
+          if 64 < ord(i) < 71:
+            count += 1 
+      if count == 2:
+        return user_input
+      
+#^^^ This function takes a 2 length string and makes sure that it 
+
+def denary_to_binary():
+  den_num = denary_input()
+
+def binary_to_denary():
+  
+  bi_num = binary_input()
+
+def binary_to_hex():
+  bi_num = binary_input()
+  
+
+def hex_to_binary():
+  
+  hex_num = hex_input()
+
+def denary_to_hex():
+  den_num = denary_input()
+  
+
+def hex_to_denary():
+  
+  hex_num = hex_input()
+
+
+
+
+
+
+
+
+
+
+def main():
+  hex_input()
+  loop = True
+  while loop:
+    print("What number do you want to convert?") 
+    print("1 - Denary")
+    print("2 - 8 bit-binary")
+    print("3 - Hexadecimal")
+    choice_a = int_input("Choice: ")
+
+    print("")
+    print("What do you want to convert it to?")
+    print("1 - Denary")
+    print("2 - 8 bit-binary")
+    print("3 - Hexadecimal")
+    choice_b = int_input("Choice: ")
+  
+    if 0 < choice_a < 4 and 0 < choice_b < 4:
+     loop = False
+    else:
+      print("")
+      print("")
+      print("One or more of your choices aren't in range, try again.")
+      print("")
+      print("")
+
+  if choice_a == choice_b:
+    print("Your choice was the same, no conversion needed")
+
+  if choice_a == 1 and choice_b == 2:
+    denary_to_binary()
+  if choice_a == 3 and choice_b == 2:
+    hex_to_binary()
+  if choice_a == 1 and choice_b == 3:
+    denary_to_hex()
+  if choice_a == 2 and choice_b == 1:
+    binary_to_denary()
+  if choice_a == 3 and choice_b == 1:
+    hex_to_denary()
+  if choice_a == 2 and choice_b == 3:
+    binary_to_hex()
+
+if __name__ == "__main__":
+  main()
