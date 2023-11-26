@@ -56,14 +56,64 @@ def hex_input():
 
 def denary_to_binary():
   den_num = denary_input()
+  expo = 7
+  bi_num = ""
+  for i in range(0,8):
+    if den_num - 2**expo > -1:
+      bi_num += "1"
+      den_num -= 2**expo
+    else:
+      bi_num += "0"
+    expo -= 1
+  if den_num == 1:
+    bi_num[7] = "1"
+  print(bi_num)
 
-def binary_to_denary():
+#^^^ This function converts binary numbers into denary numbers
   
+def binary_to_denary():
   bi_num = binary_input()
+  expo = 7
+  den_num = 0
+  for i in bi_num:
+    if i == "1":
+      den_num += 2**expo
+    expo -= 1
+  print(den_num)
+  
+#^^^ This function converts denary to binary
 
 def binary_to_hex():
   bi_num = binary_input()
-  
+  hex_num=""
+  hex_a = 0
+  hex_b = 0
+  expo = 3
+  for i in range(0,4):
+    if bi_num[i] == "1":
+      hex_a += 2**expo
+    expo -= 1
+    
+  expo = 3
+  for i in range(4,8):
+    if bi_num[i] == "1":
+      hex_b += 2**expo
+    expo -= 1
+    
+  if hex_a < 10:
+    hex_num += str(hex_a)
+  else:
+    hex_a += 55
+    hex_num += chr(hex_a)
+    
+  if hex_b < 10:
+    hex_num += str(hex_b)
+  else:
+    hex_b += 55
+    hex_num += chr(int(hex_b))
+  print(hex_num)
+
+#^^^ This function converts binary to hex
 
 def hex_to_binary():
   
@@ -87,7 +137,7 @@ def hex_to_denary():
 
 
 def main():
-  hex_input()
+  
   loop = True
   while loop:
     print("What number do you want to convert?") 
